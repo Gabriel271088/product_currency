@@ -27,6 +27,7 @@ class ProductTemplate(models.Model):
         forced_products = self.filtered('force_currency_id')
         for rec in forced_products:
             rec.currency_id = rec.force_currency_id
+            #agregado el costo a Product_currency
             rec.cost_currency_id = rec.force_currency_id.search([('name', '=', 'ARS')],limit=1) #### estes es el campo que reemplaza el costo.
         super(ProductTemplate, self - forced_products)._compute_currency_id()
 
